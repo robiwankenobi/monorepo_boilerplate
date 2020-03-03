@@ -14,9 +14,9 @@ module.exports = {
     'jest-watch-typeahead/testname',
   ],
   collectCoverageFrom: [
-    './packages/**/src/**/*.js',
-    './packages/**/src/**/*.ts',
-    './packages/**/src/**/*.tsx',
+    './src/**/*.js',
+    './src/**/*.ts',
+    './src/**/*.tsx',
   ],
   coverageThreshold: {
     global: {
@@ -26,5 +26,5 @@ module.exports = {
       lines: 50,
     },
   },
-  coveragePathIgnorePatterns: ['**/__tests__/.*'],
+  coveragePathIgnorePatterns: ['.*/__tests__/.*'],
 };

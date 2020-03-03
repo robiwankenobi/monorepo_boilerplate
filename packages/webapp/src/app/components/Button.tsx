@@ -12,7 +12,7 @@ const Button: React.FC<Props> = ({ children }) => {
   };
 
   return (
-    <button disabled={disabled} onClick={handleClick}>
+    <button data-testid="test-button" disabled={disabled} onClick={handleClick}>
       {children}
     </button>
   );
