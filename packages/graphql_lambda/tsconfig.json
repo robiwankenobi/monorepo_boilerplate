@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "esnext",
+    "importHelpers": true,
+    "experimentalDecorators": true,
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "noEmit": true,
+    "sourceMap": true,
+    "pretty": true,
+    "rootDir": ".",
+    "lib": ["es6"],
+    "baseUrl": ".",
+    "paths": {
+      "@dtm/*": ["../*/src"]
+    }
+  },
+  "include": [
+    "./src/**/*.ts",
+    "./src/**/*.tsx",
+    "./typings/**/*.d.ts",
+    "./src/**/*.gql",
+    "./src/**/*.graphql"
+  ],
+  "exclude": ["node_modules"]
+}

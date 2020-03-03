@@ -1,0 +1,40 @@
+{
+  "name": "monorepo_boilerplate",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "lerna run --parallel build",
+    "build:dev": "lerna run --parallel build:dev",
+    "bootstrap": "lerna bootstrap",
+    "bootstrap:ci": "lerna bootstrap --ci",
+    "clean": "lerna clean --yes",
+    "lerna:publish": "lerna publish --force-publish --skip-npm",
+    "lint": "lerna run --parallel lint",
+    "test": "jest",
+    "test:coverage": "jest --coverage",
+    "test:watch": "jest --watch",
+    "serverless:offline": "sls offline start --dontPrintOutput --stage dev --mode offline",
+    "setup": "npm install && npm run bootstrap && lerna run --parallel validate"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "husky": {
+    "hooks": {
+      "pre-commit": "lerna run --concurrency 1 --stream precommit"
+    }
+  },
+  "dependencies": {
+    "lerna": "^3.20.2",
+    "serverless": "^1.65.0",
+    "serverless-offline": "^5.12.1"
+  },
+  "devDependencies": {
+    "husky": "^4.2.3",
+    "jest": "^25.1.0",
+    "jest-watch-select-projects": "^2.0.0",
+    "jest-watch-typeahead": "^0.4.2",
+    "ts-jest": "^25.2.1"
+  }
+}
