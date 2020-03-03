@@ -7,11 +7,13 @@
     "build": "webpack --mode=production",
     "build:dev": "webpack --mode=development",
     "check-types": "tsc --skipLibCheck",
+    "dev": "webpack --mode=development --watch",
     "format": "prettier --ignore-path ../../.gitignore --write \"**/*.+(js|json)\" ./src/**",
     "lint": "eslint --ignore-path ../../.gitignore --ext .js,.ts,.tsx .",
     "precommit": "npm run check-types && lint-staged",
     "test": "jest",
-    "test:coverage": "jest --coverage"
+    "test:coverage": "jest --coverage",
+    "test:watch": "jest --watch"
   },
   "keywords": [],
   "author": "",

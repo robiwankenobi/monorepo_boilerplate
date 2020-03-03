@@ -9,12 +9,14 @@
     "bootstrap": "lerna bootstrap",
     "bootstrap:ci": "lerna bootstrap --ci",
     "clean": "lerna clean --yes",
+    "dev": "lerna run --parallel dev",
     "lerna:publish": "lerna publish --force-publish --skip-npm",
     "lint": "lerna run --parallel lint",
     "test": "jest",
     "test:coverage": "jest --coverage",
     "test:watch": "jest --watch",
-    "serverless:offline": "sls offline start --dontPrintOutput --stage dev --mode offline",
+    "serverless:offline": "sls offline start --dontPrintOutput --skipCacheInvalidation --stage dev --mode offline",
+    "serverless:watch": "nodemon --exec \"sls offline start  --skipCacheInvalidation --dontPrintOutput --stage dev --mode offline\" --delay 1000ms --watch ./packages/webapp/dist --watch ./packages/express_lambda/dist --watch ./packages/federation_lambda/dist --watch ./packages/graphql_lambda/dist",
     "setup": "npm install && npm run bootstrap && lerna run --parallel validate"
   },
   "keywords": [],
@@ -28,13 +30,15 @@
   "dependencies": {
     "lerna": "^3.20.2",
     "serverless": "^1.65.0",
-    "serverless-offline": "^5.12.1"
+    "serverless-offline": "^5.12.1",
+    "serverless-plugin-warmup": "^4.8.0"
   },
   "devDependencies": {
     "husky": "^4.2.3",
     "jest": "^25.1.0",
     "jest-watch-select-projects": "^2.0.0",
     "jest-watch-typeahead": "^0.4.2",
+    "nodemon": "^2.0.2",
     "ts-jest": "^25.2.1"
   }
 }

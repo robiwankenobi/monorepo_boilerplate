@@ -1,4 +1,5 @@
-import { ApolloServer, gql } from 'apollo-server-express';
+import { ApolloServer } from 'apollo-server-express';
+import { buildFederatedSchema } from '@apollo/federation';
 import cookieParser from 'cookie-parser';
 import express from 'express';
 
@@ -8,11 +9,10 @@ const { BFF_BASEPATH = '' } = process.env;
 
 const app = express();
 
-app.use('*', cookieParser(), express.static('build'));
+app.use('*', cookieParser());
 
 const server = new ApolloServer({
-  typeDefs,
-  resolvers,
+  schema: buildFederatedSchema([{ typeDefs, resolvers }]),
   playground: true,
 });
 

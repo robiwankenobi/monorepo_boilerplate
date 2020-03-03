@@ -8,6 +8,7 @@ provider:
 
 plugins:
   - serverless-offline
+  - serverless-plugin-warmup
 
 package:
   individually: true
@@ -20,11 +21,20 @@ service:
   id: ${self:service.name}-${self:provider.stage}
   apiBasePath: '/express'
   graphQLBasePath: '/graphql'
+  graphQLFederationPath: '/api'
   Route53HostedZoneId: xy
+
+custom:
+  warmup:
+    prewarm: true
+    concurrency: 10
+    payload:
+      source: serverless-plugin-warmup
 
 functions:
   express:
     handler: packages/express_lambda/dist/handler.handler
+    warmup: true
     timeout: 30
     events:
       - http: GET ${self:service.apiBasePath}
@@ -34,6 +44,7 @@ functions:
         - packages/express_lambda/dist/**
   graphql:
     handler: packages/graphql_lambda/dist/handler.handler
+    warmup: true
     timeout: 30
     events:
       - http: GET ${self:service.graphQLBasePath}
@@ -41,3 +52,13 @@ functions:
     package:
       include:
         - packages/graphql_lambda/dist/**
+  federation:
+    handler: packages/federation_lambda/dist/handler.handler
+    warmup: true
+    timeout: 30
+    events:
+      - http: GET ${self:service.graphQLFederationPath}
+      - http: POST ${self:service.graphQLFederationPath}
+    package:
+      include:
+        - packages/federation_lambda/dist/**
